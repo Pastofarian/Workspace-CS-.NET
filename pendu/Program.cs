@@ -4,22 +4,26 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        Pendu pendu1 = new Pendu("i love csharp");
+        var random = new Random();
+        var secretWord = new List<string> { "csharp", "git", "iterate", "algorithm", "debug", "object" };
+        int index = random.Next(secretWord.Count);
 
-        while(pendu1.IsFullyUnhidden() == false && pendu1.IsLost() == false)
+        Pendu pendu1 = new Pendu(secretWord[index]);
+
+        while (pendu1.IsRevealed() == false && pendu1.IsLost() == false)
         {
-            Console.WriteLine("Entrez un caratère, vous avez droit à 5 erreurs");
+            Console.WriteLine("Entrez un caratère, vous avez droit à 10 erreurs");
             char input = Console.ReadKey().KeyChar; //fonction pour détecter une entrée clavier
             if (pendu1.Attempt(input))
             {
                 Console.WriteLine();
                 Console.WriteLine("Bravo vous avez trouvé");
             }
-            
+
             Console.WriteLine();
             Console.WriteLine(pendu1);
         }
-        if(pendu1.IsFullyUnhidden() == true)
+        if (pendu1.IsRevealed() == true)
         {
             Console.WriteLine();
             Console.WriteLine("Vous avez gagné, le mot était bien : " + pendu1);

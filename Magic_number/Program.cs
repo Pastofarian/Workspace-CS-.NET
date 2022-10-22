@@ -34,26 +34,38 @@ namespace magic_number
         }
         static void Main(string[] args)
         {
+            Random rand = new Random();
+
             const int NOMBRE_MIN = 1;
             const int NOMBRE_MAX = 10;
-            const int NOMBRE_MAGIQUE = 5;
+            int nombre_magique = rand.Next(NOMBRE_MIN, NOMBRE_MAX + 1);
 
             int essai = NOMBRE_MIN - 1;
 
-            while (essai != NOMBRE_MAGIQUE)
+            for(int nbVies = 4; nbVies > 0; nbVies--)
             {
+                Console.WriteLine();
+                Console.WriteLine("Vies restantes : " + nbVies);
                 essai = DemanderNombre(NOMBRE_MIN, NOMBRE_MAX);
 
-                if (essai > NOMBRE_MAGIQUE)
+                if (essai > nombre_magique)
                 {
                     Console.WriteLine("Le nombre magique est plus petit");
                 }
-                else if (essai < NOMBRE_MAGIQUE)
+                else if (essai < nombre_magique)
                 {
                     Console.WriteLine("Le nombre magique est plus grand");
                 }
+                else
+                {
+                    Console.WriteLine("Bravo, vous avez le nombre magique !");
+                    break;
+                }
             }
-            Console.WriteLine("Bravo, vous avez le nombre magique !");
+            if (essai != nombre_magique)
+            {
+                Console.WriteLine("Vous avez perdu, le nombre magique était : " + nombre_magique);
+            }
         }
     }
 }

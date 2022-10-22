@@ -1,45 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Collections;
 
-
-internal class Program
+using System;
+using System.Collections.Generic;
+namespace Demo
 {
-    static int nbrPremier(int n)
+    class Program
     {
-
-        //2.Utilisez une fonction pour calculer les nombres premiers dans les 2 boucles de l’exercice des collections.
-
-        Console.Write("Encodez un nombre : ");
-        if (int.TryParse(Console.ReadLine(), out int nbinf))
+        static void Main(string[] args)
         {
-            List<int> listEntier = new List<int>();
 
-            int num = 0;
-            int count;
-
-            Console.Write("Les nombres premiers entre 1 et " + nbinf + " sont : \n");
-
-            for (int i = 1; num <= nbinf; num++)
-            {
-                count = 0;
-
-                for (int j = 2; j <= num / 2; j++)
-                {
-                    if (num % j == 0)
-                    {
-                        count++;
-                        break;
-                    }
-                }
-
-                if (count == 0 && num != 1 && num != 0)
-                {
-                    return num;
-                }
-            }
-
+            var random = new Random();
+            var SecretWord = new List<string> { "one", "two", "three", "four" };
+            int index = random.Next(SecretWord.Count);
+            Console.WriteLine(SecretWord[index]);
         }
-
     }
-}
 }

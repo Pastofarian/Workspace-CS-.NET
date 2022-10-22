@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-class Lettre
+class Character
 {
     public char value;  //propriétés
     public bool isHidden;
 
-    public Lettre(char value)
+    public Character(char value)
     {
         this.value = value;  //réferre aux propriétés
         this.isHidden = true;
@@ -20,23 +16,22 @@ class Lettre
 class Pendu
 {
     public int lives;
-    public List<Lettre> value;
-
+    public List<Character> value;
 
     public Pendu(string secretWord) //constructeur
     {
-        lives = 5;
-        this.value = new List<Lettre>();
+        lives = 10;
+        this.value = new List<Character>();
 
         foreach (char c in secretWord)
         {
-            this.value.Add(new Lettre(c));
+            this.value.Add(new Character(c));
         }
     }
     public override string ToString()
     {
         string ret = "";
-        foreach (Lettre l in this.value)
+        foreach (Character l in this.value)
         {
             if (l.isHidden == false)
             {
@@ -54,7 +49,7 @@ class Pendu
     {
         bool ret = false;
 
-        foreach (Lettre c in this.value)
+        foreach (Character c in this.value)
         {
             if (c.value == input)
             {
@@ -62,7 +57,7 @@ class Pendu
                 ret = true;
             }
         }
-        if(ret == false)
+        if (ret == false)
         {
             this.lives -= 1;
         }
@@ -73,15 +68,14 @@ class Pendu
     {
         return this.lives <= 0; //expression qui se traduit par un booléen (si lives 0 return true)
     }
-    public bool IsFullyUnhidden()
+    public bool IsRevealed()
     {
-        foreach (Lettre c in this.value)
+        foreach (Character c in this.value)
         {
-            if(c.isHidden == true)
+            if (c.isHidden == true)
             {
                 return false;
             }
-           
         }
         return true;
     }
