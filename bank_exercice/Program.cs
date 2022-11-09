@@ -38,11 +38,13 @@ namespace bank_exercice
             public void Withdraw(double amount)
             {
                 this.balance -= amount;
+                Console.WriteLine("La somme de " + amount +"€ a été retirée du compte " + this.number);
             }
 
             public void Deposit(double amount)
             {
                 this.balance += amount;
+                Console.WriteLine("La somme de " + amount + "€ a été déposée sur le compte " + this.number);
             }
         }
 
@@ -60,6 +62,7 @@ namespace bank_exercice
             public void AddAccount(CurrentAccount account)
             {
                 this.accounts.Add(account.number, account);
+                Console.WriteLine("Le compte " + account.number + " a été ajouté au compte(s) de " + account.owner.firstName + " " + account.owner.lastName);
             }
 
             public void DeleteAccount(string number)
@@ -101,8 +104,19 @@ namespace bank_exercice
             Console.WriteLine();
             bank1.DisplayCurrentAccount(currentAccount2);
             Console.WriteLine();
+
             bank1.AddAccount(currentAccount2);
+            Console.WriteLine();
+
+            currentAccount2.Withdraw(150);
+            Console.WriteLine();
+
+            currentAccount1.Deposit(200);
+            Console.WriteLine();
+
             bank1.DisplaySumAllAccout(person1);
+
+
         }
     }
 }
