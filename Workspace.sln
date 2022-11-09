@@ -51,7 +51,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "programme_poo", "programme_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "projet_pizza", "projet_pizza\projet_pizza.csproj", "{F6A7C08E-A5F9-44ED-A89B-4E6F3DFBC6D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "programme_fichiers", "programme_fichiers\programme_fichiers.csproj", "{7D697D3A-F831-4F85-B35A-69EC557D2EE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "programme_fichiers", "programme_fichiers\programme_fichiers.csproj", "{7D697D3A-F831-4F85-B35A-69EC557D2EE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "programme_json", "programme_json\programme_json.csproj", "{FAFDA4C6-6CA1-4B2E-8E5C-23E7EC27112C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{7D697D3A-F831-4F85-B35A-69EC557D2EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D697D3A-F831-4F85-B35A-69EC557D2EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D697D3A-F831-4F85-B35A-69EC557D2EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAFDA4C6-6CA1-4B2E-8E5C-23E7EC27112C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAFDA4C6-6CA1-4B2E-8E5C-23E7EC27112C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAFDA4C6-6CA1-4B2E-8E5C-23E7EC27112C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAFDA4C6-6CA1-4B2E-8E5C-23E7EC27112C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,6 +164,7 @@ Global
 		{5F295C41-F34A-4258-BC55-FFF383626C31} = {FA36A353-4E9E-4871-A05B-6B4C11B7590B}
 		{F6A7C08E-A5F9-44ED-A89B-4E6F3DFBC6D1} = {FA36A353-4E9E-4871-A05B-6B4C11B7590B}
 		{7D697D3A-F831-4F85-B35A-69EC557D2EE3} = {FA36A353-4E9E-4871-A05B-6B4C11B7590B}
+		{FAFDA4C6-6CA1-4B2E-8E5C-23E7EC27112C} = {FA36A353-4E9E-4871-A05B-6B4C11B7590B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E88B157-30E0-4575-95BF-B729970F8B5E}
