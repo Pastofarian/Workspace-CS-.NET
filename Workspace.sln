@@ -56,8 +56,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "programme_json", "programme_json\programme_json.csproj", "{FAFDA4C6-6CA1-4B2E-8E5C-23E7EC27112C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bank_exercice", "Bank_exercice", "{D990AE6D-1023-42CC-A22A-951250C5D619}"
+	ProjectSection(SolutionItems) = preProject
+		..\Notes\Consigne exercice Bank.txt = ..\Notes\Consigne exercice Bank.txt
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank_exercice", "bank_exercice\bank_exercice.csproj", "{704EC075-1BED-4A65-84C3-7F00F11D069A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bank_exercice", "bank_exercice\bank_exercice.csproj", "{704EC075-1BED-4A65-84C3-7F00F11D069A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

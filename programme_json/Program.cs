@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
+using System.Text;
 
 namespace programme_json
 {
@@ -30,15 +32,41 @@ namespace programme_json
 
         static void Main(string[] args)
         {
-            var personne1 = new Personne("Toto", 20, true); //{  nom = "Toto", age = 20, majeur = true }; sans passer par constructeur
+            /*var personne1 = new Personne("Toto", 20, true); //{  nom = "Toto", age = 20, majeur = true }; sans passer par constructeur
             personne1.Afficher();
 
             string json = JsonConvert.SerializeObject(personne1);
             Console.WriteLine(json);
 
+            List<string> noms = new List<string>() { "Jean", "Paul", "Claire" };
+            string jsonListe = JsonConvert.SerializeObject(noms);
+            Console.WriteLine(jsonListe);
+
             string jsonTiti = "{\"nom\":\"Titi\",\"age\":15,\"majeur\":false}"; // ajouter un backslash à chaque guillemet
             Personne titi = JsonConvert.DeserializeObject<Personne>(jsonTiti); //operation inverse "deserialize"
-            titi.Afficher();
+            titi.Afficher();*/
+
+            /******************************************Ecriture*****************************************/
+            /*var personnes = new List<Personne>();
+
+            personnes.Add(new Personne("Toto", 20, true));
+            personnes.Add(new Personne("Titi", 16, false));
+            personnes.Add(new Personne("Tata", 75, true));
+            personnes.Add(new Personne("Tutu", 7, false));
+            var json = JsonConvert.SerializeObject(personnes);
+            Console.WriteLine(json);
+
+            File.WriteAllText("personnes.txt", json);*/
+
+            /*********************************************Lecture**********************************/
+            var json = File.ReadAllText("personnes.txt");
+            var personnes = JsonConvert.DeserializeObject<List<Personne>>(json);
+
+            foreach (var personne in personnes)
+            {
+                personne.Afficher();
+            }
+
         }
     }
 }

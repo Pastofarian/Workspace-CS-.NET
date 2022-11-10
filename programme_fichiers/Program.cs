@@ -56,7 +56,7 @@ namespace progamme_fichiers
             int nbLignes = 10000000;
 
             /***************************************************************************************************/
-            /*DateTime t1 = DateTime.Now;
+            DateTime t1 = DateTime.Now;
             Console.WriteLine("Préparation des données... ");
             for(int i = 1; i < nbLignes; i++)
             {
@@ -71,7 +71,7 @@ namespace progamme_fichiers
 
             DateTime t2 = DateTime.Now;
             var diff = (int)(t2 - t1).TotalMilliseconds;   //1s = 1000ms
-            Console.WriteLine("Durée (ms)" + diff);*/
+            Console.WriteLine("Durée (ms)" + diff);
             /*******************************************************************************************************/
 
             //Stream : flux //Pour écrire des très gros fichers !
