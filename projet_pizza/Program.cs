@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Text;
 
 
@@ -98,13 +99,9 @@ namespace projet_pizza
     }
     class Program
     {
-        static void Main(string[] args)
+        static List<Pizza> GetPizzasFromCode()
         {
-            Console.OutputEncoding = Encoding.UTF8; //pour le signe €
-            var filename = "pizzas.json";
-
-            /* GENERATION DES DONNEES
-             * var pizzas = new List<Pizza>
+            var pizzas = new List<Pizza>
              {
                  new Pizza("margherita", 9.5f, true, new List<string> { "tomate", "fromage", "olives", "oeufs" }),
                  new Pizza("4 saisons", 12.5f, false, new List<string> {"artichauds", "oignons", "tomates" }),
@@ -115,15 +112,11 @@ namespace projet_pizza
                  //new PizzaPersonnalisee(),
                  //new PizzaPersonnalisee(),
              };
-             string json = JsonConvert.SerializeObject(pizzas);
-             Console.WriteLine(json);
+            return pizzas;
+        }
 
-             File.WriteAllText(filename, json);
-
-             //pizzas = pizzas.Where(p => p.vegetarienne is true).ToList();
-             //pizzas = pizzas.Where(p => p.ingredients.Where(i => i.ToLower().Contains("tomate")).ToList().Count > 0).ToList(); //where imbriqué
-             //pizzas = pizzas.Where(p => p.ContientIngredient("oignon")).ToList(); // avec la methode
-            */
+        static List<Pizza> GetPizzasFromFile(string filename) //static sinon on ne peut pas les appeler depuis le Main
+        {
             string json = null;
             try
             {
@@ -132,7 +125,8 @@ namespace projet_pizza
             catch
             {
                 Console.WriteLine("Erreur de lecture de fichier : " + filename);
-                return; //Pour arrêter là fonction si erreur.
+                return null;
+                //Pour arrêter là fonction si erreur.
             }
 
             List<Pizza> pizzas = null;
@@ -143,14 +137,69 @@ namespace projet_pizza
             catch
             {
                 Console.WriteLine("Erreur : Les données json ne sont pas valide");
-                return;
+                return null;
             }
+            return pizzas;
+        }
 
+        static void GenerateJsonFile(List<Pizza> pizzas, string filename)
+        {
+            string json = JsonConvert.SerializeObject(pizzas);
+            //Console.WriteLine(json);
 
-            foreach (var pizza in pizzas)
+            File.WriteAllText(filename, json);
+        }
+
+        static List<Pizza> GetPizzasFromUrl(string url)
+        {
+            var webClient = new WebClient();
+            string json = null;
+            try
             {
-                pizza.Afficher();
+                json = webClient.DownloadString(url);
+
             }
+            catch
+            {
+                Console.WriteLine("Erreur réseau");
+                return null;
+            }
+
+            List<Pizza> pizzas = null;
+            try
+            {
+                pizzas = JsonConvert.DeserializeObject<List<Pizza>>(json);
+            }
+            catch
+            {
+                Console.WriteLine("Erreur : Les données json ne sont pas valide");
+                return null;
+            }
+            return pizzas;
+        }
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8; //pour le signe €
+            var filename = "pizzas.json";
+
+            // var pizzas = GetPizzasFromCode(); Pour obtenir les pizzas via le code
+            //GenerateJsonFile(pizzas, filename); Pour générer le fichier
+
+            //List<Pizza> pizzas = GetPizzasFromFile(filename); // Pour obtenir les pizzas via le fichier 
+
+            var pizzas = GetPizzasFromUrl("https://codeavecjonathan.com/res/pizzas2.json");
+
+            if (pizzas != null)
+            {
+                foreach (var pizza in pizzas)
+                    pizza.Afficher();
+            }
+
+            /*---------------------------------------------------------------------------------------------------------*/
+
+            //pizzas = pizzas.Where(p => p.vegetarienne is true).ToList();
+            //pizzas = pizzas.Where(p => p.ingredients.Where(i => i.ToLower().Contains("tomate")).ToList().Count > 0).ToList(); //where imbriqué
+            //pizzas = pizzas.Where(p => p.ContientIngredient("oignon")).ToList(); // avec la methode
         }
     }
 }
