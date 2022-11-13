@@ -18,7 +18,7 @@ namespace bank_exercice
 
             var savingAccount1 = new Savings("BE45-96852231-83", 10000.00f, person1, new DateTime(2022, 10, 25));
 
-            var accountPerson1 = new Dictionary<string, CurrentAccount> { { "BE45-9897881-36", currentAccount1 } };
+            var accountPerson1 = new Dictionary<string, Account> { { "BE45-9897881-36", currentAccount1 } };
             var bank1 = new Bank(accountPerson1, "Argenta");
 
             bank1.DisplayCurrentAccount(currentAccount1); //Affiche le solde du compte currentAccount1
@@ -36,7 +36,7 @@ namespace bank_exercice
             currentAccount1.Deposit(200); //Depose 200€ sur currentAccount1
             Console.WriteLine();
 
-            savingAccount1.Withdraw(1000); //Retire 1000€ de savingAccount1
+            currentAccount2.Withdraw(1000); //Retire 1000€ de currentAccount2 (négatif)
             Console.WriteLine();
 
             bank1.DisplaySavingAccount(savingAccount1); //Affiche le solde du compte savingAccount1
@@ -44,6 +44,18 @@ namespace bank_exercice
 
             bank1.DisplaySumAllAccout(person1); //Affiche tous les comptes de person1 mais pas les savings
             Console.WriteLine();
+
+            currentAccount2.ApplyInterest(); //Applique les intérets négatif au compte courant currentAccount2
+            Console.WriteLine();
+
+            currentAccount1.ApplyInterest(); //Applique les intérets au compte courant currentAccount1
+            Console.WriteLine();
+
+            savingAccount1.ApplyInterest(); //Applique les intérets au compte d'épargne savingAccount1
+            Console.WriteLine();
         }
     }
 }
+//J'ai un soucis pour lier les comptes à une personne. Voir la fonction addAccount() et DisplaySumAllAccount()
+//Ce serait bien d'ajouter le compte d'épargne à DisplaySumAllAccount()
+// + un système de virement

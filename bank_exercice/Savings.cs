@@ -6,24 +6,35 @@ using System.Threading.Tasks;
 
 namespace bank_exercice
 {
-    class Savings : CurrentAccount
+    internal class Savings : Account
     {
-        public DateTime dateLastWithdraw;
+        public DateTime DateLastWithdraw;
 
         public Savings(string number, double balance, Person owner, DateTime dateLastWithdraw) : base(number, balance, 0.00f, owner) //creditLine = 0.00
         {
-            this.dateLastWithdraw = dateLastWithdraw;
+            this.DateLastWithdraw = dateLastWithdraw;
         }
 
-        public override void Withdraw(double amount)
+        //public override void Withdraw(double amount)
+        //{
+        //    Balance -= amount;
+        //    Console.WriteLine("La somme de " + amount + "€ a été retirée du compte d'épargne " + this.number);
+        //}
+        //public override void Deposit(double amount)
+        //{
+        //    Balance += amount;
+        //    Console.WriteLine("La somme de " + amount + "€ a été déposée sur le compte d'épargne " + this.number);
+        //}
+
+        protected override double CalculInterest()
         {
-            this.balance -= amount;
-            Console.WriteLine("La somme de " + amount + "€ a été retirée du compte d'épargne " + this.number);
-        }
-        public override void Deposit(double amount)
-        {
-            this.balance += amount;
-            Console.WriteLine("La somme de " + amount + "€ a été déposée sur le compte d'épargne " + this.number);
+            double newBalance = 0.00;
+            double interest = 0.00;
+
+            interest = Balance * 0.045;
+            newBalance = this.Balance + interest;
+            Console.WriteLine("4,5% d'intérets (" + interest + "€) ont été appliqués au compte " + this.Number + " \nSolde = " + newBalance);
+            return newBalance * 0.045;
         }
     }
 }

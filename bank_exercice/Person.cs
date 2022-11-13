@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace bank_exercice
 {
-    class Person
+    internal class Person
     {
-        public string firstName;
-        public string lastName;
-        public DateTime birthDate;
+        public string FirstName;
+        public string LastName;
+        public DateTime BirthDate;
 
         public Person(string firstName, string lastName, DateTime birthDate)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.birthDate = birthDate;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.BirthDate = birthDate;
         }
     }
 }

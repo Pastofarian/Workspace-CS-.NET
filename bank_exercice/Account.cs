@@ -6,20 +6,57 @@ using System.Threading.Tasks;
 
 namespace bank_exercice
 {
-    public class Account //: Savings Pourquoi ?? La class Savings fait le job ??
+    internal abstract class Account
     {
-        protected void CalculInterest()
+        private double _balance;
+        public string Number
         {
-            /* Ajouter une méthode abstraite « protected » à la classe « Account » ayant le
-             prototype « double CalculInterets() » en sachant que pour un livret d’épargne le
-             taux est toujours de 4.5% tandis que pour le compte courant si le solde est positif
-             le taux sera de 3% sinon de 9.75%.*/
+            get; set;
         }
+        public double Balance
+        {
+            get => _balance;
+        }
+        //{
+        //    get; protected set;
+        //}
+        public double CreditLine
+        {
+            get; set;
+        }
+        public Person Owner
+        {
+            get;
+        }
+        //{
+        //    get; private set;
+        //}
+
+        protected Account(string number, double balance, double creditLine, Person owner)
+        {
+            this.Number = number;
+            this._balance = balance;
+            this.CreditLine = creditLine;
+            this.Owner = owner;
+        }
+
+        public virtual void Withdraw(double amount)
+        {
+            this._balance -= amount;
+            Console.WriteLine("La somme de " + amount + "€ a été retirée du compte " + this.Number);
+        }
+        public virtual void Deposit(double amount)
+        {
+            this._balance += amount;
+            Console.WriteLine("La somme de " + amount + "€ a été déposée sur le compte " + this.Number);
+        }
+        protected abstract double CalculInterest();
 
         public void ApplyInterest()
         {
-            /*Ajouter une méthode « public » à la classe « Account » appelée « ApplyInterest » 
-            qui additionnera le solde avec le retour de la méthode « CalculInterest ».*/
+            {
+                this._balance += CalculInterest();
+            }
         }
     }
 }

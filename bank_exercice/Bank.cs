@@ -7,48 +7,48 @@ using System.Threading.Tasks;
 
 namespace bank_exercice
 {
-    class Bank
+    internal class Bank
     {
-        public Dictionary<string, CurrentAccount> accounts
+        public Dictionary<string, Account> Accounts
         {
             get; private set;
         }
-        string name;
+        string Name;
 
-        public Bank(Dictionary<string, CurrentAccount> account, string name)
+        public Bank(Dictionary<string, Account> account, string name)
         {
-            this.accounts = account;
-            this.name = name;
+            this.Accounts = account;
+            this.Name = name;
         }
 
-        public void AddAccount(CurrentAccount account)
+        public void AddAccount(Account account)
         {
-            this.accounts.Add(account.number, account);
-            Console.WriteLine("Le compte " + account.number + " a été ajouté au compte(s) de " + account.owner.firstName + " " + account.owner.lastName);
+            this.Accounts.Add(account.Number, account);
+            Console.WriteLine("Le compte " + account.Number + " a été ajouté au compte(s) de " + account.Owner.FirstName + " " + account.Owner.LastName);
         }
 
         public void DeleteAccount(string number)
         {
-            this.accounts.Remove(number);
+            this.Accounts.Remove(number);
         }
 
         public void DisplayCurrentAccount(CurrentAccount currentAccount)
         {
-            Console.WriteLine("Le solde du compte " + currentAccount.number + " de " + currentAccount.owner.firstName + " " + currentAccount.owner.lastName + " est de " + currentAccount.balance + "€");
+            Console.WriteLine("Le solde du compte " + currentAccount.Number + " de " + currentAccount.Owner.FirstName + " " + currentAccount.Owner.LastName + " est de " + currentAccount.Balance + "€");
         }
 
-        public void DisplaySumAllAccout(Person person)
+        public void DisplaySumAllAccout(Person person) //le account n'est pas lié à la personne 
         {
             double result = 0;
-            foreach (var account in accounts)
+            foreach (var account in Accounts)
             {
-                result += account.Value.balance;
+                result += account.Value.Balance;
             }
-            Console.WriteLine("Le solde des comptes de " + person.firstName + " " + person.lastName + " est de " + result + "€");
+            Console.WriteLine("Le solde des comptes de " + person.FirstName + " " + person.LastName + " est de " + result + "€");
         }
         public void DisplaySavingAccount(Savings account)
         {
-            Console.WriteLine("Le solde du compte d'épargne " + account.number + " de " + account.owner.firstName + " " + account.owner.lastName + " est de " + account.balance + "€");
+            Console.WriteLine("Le solde du compte d'épargne " + account.Number + " de " + account.Owner.FirstName + " " + account.Owner.LastName + " est de " + account.Balance + "€");
         }
     }
 }
