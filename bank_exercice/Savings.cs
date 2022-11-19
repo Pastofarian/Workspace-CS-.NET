@@ -10,7 +10,7 @@ namespace bank_exercice
     {
         public DateTime DateLastWithdraw;
 
-        public Savings(string number, double balance, Person owner, DateTime dateLastWithdraw) : base(number, balance, 0.00f, owner) //creditLine = 0.00
+        public Savings(string number, double balance, double creditLine, Person owner, DateTime dateLastWithdraw) : base(number, balance, creditLine, owner)
         {
             this.DateLastWithdraw = dateLastWithdraw;
         }

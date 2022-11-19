@@ -20,7 +20,7 @@ namespace bank_exercice
         {
             //this.number = number;
             //this.balance = balance;
-            //this.creditLine = creditLine;
+            //this.CreditLine = creditLine;
             //this.owner = owner;
         }
 

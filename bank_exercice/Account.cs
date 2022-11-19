@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace bank_exercice
 {
-    internal abstract class Account
+    internal abstract class Account : ICustomer, IBanker
     {
         private double _balance;
+
         public string Number
         {
             get; set;
@@ -40,10 +41,33 @@ namespace bank_exercice
             this.Owner = owner;
         }
 
+        protected Account(string number, Person owner)
+        {
+            Number = number;
+            Owner = owner;
+        }
+
+        protected Account(double balance, string number, Person owner)
+        {
+            _balance = balance;
+            Number = number;
+            Owner = owner;
+        }
+
         public virtual void Withdraw(double amount)
         {
-            this._balance -= amount;
-            Console.WriteLine("La somme de " + amount + "€ a été retirée du compte " + this.Number);
+            double total = this._balance - amount;
+            if (total < this.CreditLine)
+            {
+                //Console.WriteLine("total" + total);
+                //Console.WriteLine("CreditLine" + this.CreditLine);
+                Console.WriteLine($"impossible de retirer {amount}€\nVotre solde est de {_balance}€\nVotre solde négatif maximum est de {CreditLine}€.");
+            }
+            else
+            {
+                Console.WriteLine("La somme de " + amount + "€ a été retirée du compte " + this.Number);
+                this._balance -= amount;
+            }
         }
         public virtual void Deposit(double amount)
         {
