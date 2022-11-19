@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,15 +38,31 @@ namespace bank_exercice
             Console.WriteLine("Le solde du compte " + currentAccount.Number + " de " + currentAccount.Owner.FirstName + " " + currentAccount.Owner.LastName + " est de " + currentAccount.Balance + "€");
         }
 
-        public void DisplaySumAllAccout(Person person) //le account n'est pas lié à la personne 
+        //public void DisplaySumAllAccout(Person person) //le account n'est pas lié à la personne 
+        //{
+        //    double result = 0;
+        //    foreach (var account in Accounts)
+        //    {
+        //        result += account.Value.Balance;
+        //    }
+        //    Console.WriteLine("Le solde des comptes de " + person.FirstName + " " + person.LastName + " est de " + result + "€");
+        //}
+
+        public void DisplaySumAllAccout(Person person)
         {
-            double result = 0;
+            double sumAllAccount = 0;
             foreach (var account in Accounts)
             {
-                result += account.Value.Balance;
+                //Console.WriteLine(account.Value.Owner.LastName);
+                if (account.Value.Owner.LastName == "Doe")
+                {
+                    sumAllAccount += account.Value.Balance;
+                }
+                //Console.WriteLine("balance " + account.Value.Balance + account.Value.Number);
             }
-            Console.WriteLine("Le solde des comptes de " + person.FirstName + " " + person.LastName + " est de " + result + "€");
+            Console.WriteLine("somme totale des comptes de " + person.FirstName + " " + person.LastName + " est de " + sumAllAccount + "€");
         }
+
         public void DisplaySavingAccount(Savings account)
         {
             Console.WriteLine("Le solde du compte d'épargne " + account.Number + " de " + account.Owner.FirstName + " " + account.Owner.LastName + " est de " + account.Balance + "€");

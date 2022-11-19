@@ -27,7 +27,10 @@ namespace bank_exercice
             bank1.DisplayCurrentAccount(currentAccount2); //Affiche le solde du compte currentAccount2
             Console.WriteLine();
 
-            bank1.AddAccount(currentAccount2); //Ajoute un nouveau compte mais comment lier à un owner sans le new ? C'est tricher.
+            bank1.AddAccount(currentAccount2); //Ajoute un nouveau compte lié à une personne
+            Console.WriteLine();
+
+            bank1.AddAccount(savingAccount1); //Ajoute un nouveau compte d'épargne lié à une personne
             Console.WriteLine();
 
             currentAccount2.Withdraw(150); //Retire 150€ de currentAccount2
@@ -36,13 +39,10 @@ namespace bank_exercice
             currentAccount1.Deposit(200); //Depose 200€ sur currentAccount1
             Console.WriteLine();
 
-            currentAccount2.Withdraw(1000); //Retire 1000€ de currentAccount2 (négatif)
+            currentAccount2.Withdraw(150); //Retire 150€ de currentAccount2 
             Console.WriteLine();
 
             bank1.DisplaySavingAccount(savingAccount1); //Affiche le solde du compte savingAccount1
-            Console.WriteLine();
-
-            bank1.DisplaySumAllAccout(person1); //Affiche tous les comptes de person1 mais pas les savings
             Console.WriteLine();
 
             currentAccount2.ApplyInterest(); //Applique les intérets négatif au compte courant currentAccount2
@@ -53,9 +53,14 @@ namespace bank_exercice
 
             savingAccount1.ApplyInterest(); //Applique les intérets au compte d'épargne savingAccount1
             Console.WriteLine();
+
+            bank1.DisplaySumAllAccout(person1); //Affiche tous les comptes de person1 mais pas les savings
+            Console.WriteLine();
+
         }
     }
 }
-//J'ai un soucis pour lier les comptes à une personne. Voir la fonction addAccount() et DisplaySumAllAccount()
+//J'ai un soucis pour lier les comptes à une personne. Voir la fonction DisplaySumAllAccount()
 //Ce serait bien d'ajouter le compte d'épargne à DisplaySumAllAccount()
 // + un système de virement
+
