@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace bank_exercice
     internal abstract class Account : ICustomer, IBanker
     {
         private double _balance;
+        private Person _owner;
 
         public string Number
         {
@@ -27,7 +29,7 @@ namespace bank_exercice
         }
         public Person Owner
         {
-            get;
+            get => _owner;
         }
         //{
         //    get; private set;
@@ -38,7 +40,7 @@ namespace bank_exercice
             this.Number = number;
             this._balance = balance;
             this.CreditLine = creditLine;
-            this.Owner = owner;
+            this._owner = owner;
         }
 
         protected Account(string number, Person owner)
