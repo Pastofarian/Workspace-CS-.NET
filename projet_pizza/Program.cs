@@ -75,9 +75,14 @@ namespace projet_pizza
             string badgeVegetarienne = vegetarienne ? " (V)" : "";
             string nomAfficher = FormatName(nom);
 
-            var ingredientsAfficher = ingredients.Select(i => FormatName(i)).ToList();
+
             Console.WriteLine(nomAfficher + badgeVegetarienne + " - " + prix + "€");
-            Console.WriteLine(string.Join(",", ingredientsAfficher));
+
+            if (ingredients != null)
+            {
+                var ingredientsAfficher = ingredients.Select(i => FormatName(i)).ToList();
+                Console.WriteLine(string.Join(",", ingredientsAfficher));
+            }
             Console.WriteLine();
         }
         private static string FormatName(string s)
@@ -187,7 +192,11 @@ namespace projet_pizza
 
             //List<Pizza> pizzas = GetPizzasFromFile(filename); // Pour obtenir les pizzas via le fichier 
 
-            var pizzas = GetPizzasFromUrl("https://codeavecjonathan.com/res/pizzas2.json");
+            string apiUrl = "https://localhost:5001/api/getpizzas";
+
+            var pizzas = GetPizzasFromUrl(apiUrl);
+
+            //var pizzas = GetPizzasFromUrl("https://codeavecjonathan.com/res/pizzas2.json");
 
             if (pizzas != null)
             {

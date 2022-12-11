@@ -14,7 +14,7 @@ namespace bank_exercice
 
             var person1 = new Person("John", "Doe", new DateTime(1991, 05, 25));
             var currentAccount1 = new CurrentAccount("BE45-9897881-36", 100.00f, -1000.00f, person1);
-            var currentAccount2 = new CurrentAccount("BE45-9898954-63", 500.00f, -1000.00f, person1);
+            var currentAccount2 = new CurrentAccount("BE45-9898954-63", 500.00f, 1000.00f, person1);
 
             var savingAccount1 = new Savings("BE45-96852231-83", 10000.00f, 00.00f, person1, new DateTime(2022, 10, 25));
 
@@ -57,10 +57,26 @@ namespace bank_exercice
             bank1.DisplaySumAllAccout(person1); //Affiche tous les comptes de person1 mais pas les savings
             Console.WriteLine();
 
+            try
+            {
+                currentAccount1.Deposit(-100);
+            }
+            catch (ArgumentOutOfRangeException argumentOutOfRangeException)
+            {
+                Console.WriteLine($"Error: {argumentOutOfRangeException.Message}");
+            }
+
+            try
+            {
+                var currentAccount3 = new CurrentAccount("BE45-9897881-36", 100.00f, 1000.00f, person1); //crée un compte avec une ligne de crédit de 1000€
+            }
+            catch (ArgumentOutOfRangeException argumentOutOfRangeException)
+            {
+                Console.WriteLine($"Error: {argumentOutOfRangeException.Message}");
+            }
         }
     }
 }
-//J'ai un soucis pour lier les comptes à une personne. Voir la fonction DisplaySumAllAccount()
-//Ce serait bien d'ajouter le compte d'épargne à DisplaySumAllAccount()
-// + un système de virement
+
+
 

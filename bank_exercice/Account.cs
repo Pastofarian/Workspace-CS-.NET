@@ -39,21 +39,22 @@ namespace bank_exercice
         {
             this.Number = number;
             this._balance = balance;
-            this.CreditLine = creditLine;
+            this.CreditLine = ForbidNegativeCredit(creditLine);
             this._owner = owner;
+
         }
 
         protected Account(string number, Person owner)
         {
             Number = number;
-            Owner = owner;
+            _owner = owner;
         }
 
         protected Account(double balance, string number, Person owner)
         {
             _balance = balance;
             Number = number;
-            Owner = owner;
+            _owner = owner;
         }
 
         public virtual void Withdraw(double amount)
@@ -73,6 +74,10 @@ namespace bank_exercice
         }
         public virtual void Deposit(double amount)
         {
+            if (amount <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(amount), "La somme déposée ne peut être inférieur à zéro !");
+            }
             this._balance += amount;
             Console.WriteLine("La somme de " + amount + "€ a été déposée sur le compte " + this.Number);
         }
@@ -84,5 +89,16 @@ namespace bank_exercice
                 this._balance += CalculInterest();
             }
         }
+        public double ForbidNegativeCredit(double creditLine)
+        {
+            if (creditLine > 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(creditLine), "Le crédit ne peut être supérieur à zéro !");
+            }
+
+            return creditLine;
+        }
+
+        //public delegate double NegativeBalanceEvent(Account account);
     }
 }
